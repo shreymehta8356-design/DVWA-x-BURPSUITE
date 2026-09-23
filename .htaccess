@@ -1,0 +1,59 @@
+# ============================================================================
+#  DVWA x BURPSUITE - Apache configuration
+#
+#  Applies automatically under XAMPP, where htdocs is configured with
+#  AllowOverride All. Everything here is defence in depth: the platform does
+#  not depend on any of it, but a tool that reports missing security headers
+#  should not be missing them itself.
+# ============================================================================
+
+# ---- No directory listings, no CGI -----------------------------------------
+Options -Indexes -ExecCGI
+DirectoryIndex index.php
+
+# ---- Optional pretty API URLs ----------------------------------------------
+# The interface calls api/index.php/... directly, so the platform works with
+# mod_rewrite switched off. This block only adds the tidier /api/... alias.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^api/(.*)$ api/index.php/$1 [QSA,L]
+</IfModule>
+
+# ---- Security response headers ---------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    # Uncomment once the platform is served over HTTPS:
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ---- Never serve source, dumps, backups or VCS metadata --------------------
+<FilesMatch "\.(sql|md|lock|log|sqlite|bak|old|inc|ini|yml|yaml|dist|sample)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ---- Upload limits for evidence artefacts and Burp exports -----------------
+<IfModule mod_php.c>
+    php_value upload_max_filesize 24M
+    php_value post_max_size 26M
+</IfModule>

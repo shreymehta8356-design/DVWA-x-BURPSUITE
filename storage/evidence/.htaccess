@@ -1,0 +1,16 @@
+# Evidence artefacts are attacker-supplied by definition. Nothing here is ever
+# served or executed: the platform streams files through the API instead, with
+# a restrictive Content-Type and a download disposition.
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>
+php_flag engine off
+<FilesMatch "\.(php|phar|phtml|php3|php4|php5|php7|php8|cgi|pl|asp|aspx|jsp)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>

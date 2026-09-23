@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!--
+  Sample Burp Suite issue export, shaped exactly like the real thing, so the
+  import wizard can be exercised without needing Burp Professional to hand.
+  Requests and responses are base64 encoded, as Burp produces when
+  "Base64-encode requests and responses" is ticked on export.
+-->
+<issues burpVersion="2026.4.2" exportTime="Mon Aug 31 14:22:08 IST 2026">
+
+  <issue>
+    <serialNumber>4917283640021884416</serialNumber>
+    <type>1049088</type>
+    <name>SQL injection</name>
+    <host ip="127.0.0.1">http://localhost</host>
+    <path><![CDATA[/DVWA/vulnerabilities/sqli/]]></path>
+    <location><![CDATA[/DVWA/vulnerabilities/sqli/ [id parameter]]]></location>
+    <severity>High</severity>
+    <confidence>Firm</confidence>
+    <issueBackground><![CDATA[<p>SQL injection vulnerabilities arise when user-controllable data is incorporated into database SQL queries in an unsafe manner.</p>]]></issueBackground>
+    <remediationBackground><![CDATA[<p>The most effective way to prevent SQL injection attacks is to use parameterized queries (also known as prepared statements) for all database access.</p>]]></remediationBackground>
+    <issueDetail><![CDATA[<p>The <b>id</b> parameter appears to be vulnerable to SQL injection attacks. A single quote was submitted in the id parameter, and a database error message was returned.</p>]]></issueDetail>
+    <requestresponse>
+      <request method="GET" base64="true"><![CDATA[R0VUIC9EVldBL3Z1bG5lcmFiaWxpdGllcy9zcWxpLz9pZD0xJTI3JlN1Ym1pdD1TdWJtaXQgSFRUUC8xLjENCkhvc3Q6IGxvY2FsaG9zdA0KVXNlci1BZ2VudDogTW96aWxsYS81LjANCkNvb2tpZTogUEhQU0VTU0lEPTdmMmE5YzFkZTRiODsgc2VjdXJpdHk9bG93DQpDb25uZWN0aW9uOiBjbG9zZQ0KDQo=]]></request>
+      <response base64="true"><![CDATA[SFRUUC8xLjEgMjAwIE9LDQpTZXJ2ZXI6IEFwYWNoZS8yLjQuNTgNClgtUG93ZXJlZC1CeTogUEhQLzguMi4xMg0KQ29udGVudC1UeXBlOiB0ZXh0L2h0bWwNCg0KV2FybmluZzogbXlzcWxpX2ZldGNoX2FycmF5KCkgZXhwZWN0cyBwYXJhbWV0ZXIgMSB0byBiZSBteXNxbGlfcmVzdWx0LCBib29sIGdpdmVu]]></response>
+      <responseRedirected>false</responseRedirected>
+    </requestresponse>
+  </issue>
+
+  <issue>
+    <serialNumber>4917283640021884417</serialNumber>
+    <type>5244160</type>
+    <name>Cross-site scripting (reflected)</name>
+    <host ip="127.0.0.1">http://localhost</host>
+    <path><![CDATA[/DVWA/vulnerabilities/xss_r/]]></path>
+    <location><![CDATA[/DVWA/vulnerabilities/xss_r/ [name parameter]]]></location>
+    <severity>High</severity>
+    <confidence>Certain</confidence>
+    <issueBackground><![CDATA[<p>Reflected cross-site scripting vulnerabilities arise when data is copied from a request and echoed into the application's immediate response in an unsafe way.</p>]]></issueBackground>
+    <remediationBackground><![CDATA[<p>In most situations where user-controllable data is copied into application responses, cross-site scripting attacks can be prevented using two layers of defenses: input validation and output encoding.</p>]]></remediationBackground>
+    <issueDetail><![CDATA[<p>The value of the <b>name</b> request parameter is copied into the HTML document as plain text between tags. The payload was echoed unmodified in the application's response.</p>]]></issueDetail>
+    <requestresponse>
+      <request method="GET" base64="true"><![CDATA[R0VUIC9EVldBL3Z1bG5lcmFiaWxpdGllcy94c3Nfci8/bmFtZT0lM0NzY3JpcHQlM0VhbGVydCgxKSUzQy9zY3JpcHQlM0UgSFRUUC8xLjENCkhvc3Q6IGxvY2FsaG9zdA0KDQo=]]></request>
+      <response base64="true"><![CDATA[SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LVR5cGU6IHRleHQvaHRtbA0KDQo8cHJlPkhlbGxvIDxzY3JpcHQ+YWxlcnQoMSk8L3NjcmlwdD48L3ByZT4=]]></response>
+      <responseRedirected>false</responseRedirected>
+    </requestresponse>
+  </issue>
+
+  <issue>
+    <serialNumber>4917283640021884418</serialNumber>
+    <type>2097408</type>
+    <name>OS command injection</name>
+    <host ip="127.0.0.1">http://localhost</host>
+    <path><![CDATA[/DVWA/vulnerabilities/exec/]]></path>
+    <location><![CDATA[/DVWA/vulnerabilities/exec/ [ip parameter]]]></location>
+    <severity>High</severity>
+    <confidence>Certain</confidence>
+    <issueBackground><![CDATA[<p>Operating system command injection vulnerabilities arise when an application incorporates user-controllable data into a command that is processed by a shell command interpreter.</p>]]></issueBackground>
+    <remediationBackground><![CDATA[<p>If possible, applications should avoid incorporating user-controllable data into operating system commands.</p>]]></remediationBackground>
+    <issueDetail><![CDATA[<p>The <b>ip</b> parameter appears to be vulnerable to OS command injection attacks. The application executed the injected command and returned its output.</p>]]></issueDetail>
+    <requestresponse>
+      <request method="POST" base64="true"><![CDATA[UE9TVCAvRFZXQS92dWxuZXJhYmlsaXRpZXMvZXhlYy8gSFRUUC8xLjENCkhvc3Q6IGxvY2FsaG9zdA0KQ29udGVudC1UeXBlOiBhcHBsaWNhdGlvbi94LXd3dy1mb3JtLXVybGVuY29kZWQNCg0KaXA9MTI3LjAuMC4xJTNCK3dob2FtaSZTdWJtaXQ9U3VibWl0]]></request>
+      <response base64="true"><![CDATA[SFRUUC8xLjEgMjAwIE9LDQoNCjxwcmU+bnQgYXV0aG9yaXR5XHN5c3RlbTwvcHJlPg==]]></response>
+      <responseRedirected>false</responseRedirected>
+    </requestresponse>
+  </issue>
+
+  <issue>
+    <serialNumber>4917283640021884419</serialNumber>
+    <type>5245088</type>
+    <name>Cookie without HttpOnly flag set</name>
+    <host ip="127.0.0.1">http://localhost</host>
+    <path><![CDATA[/DVWA/login.php]]></path>
+    <location><![CDATA[/DVWA/login.php]]></location>
+    <severity>Low</severity>
+    <confidence>Firm</confidence>
+    <issueBackground><![CDATA[<p>If the HttpOnly attribute is set on a cookie, then the cookie's value cannot be read or set by client-side JavaScript.</p>]]></issueBackground>
+    <remediationBackground><![CDATA[<p>There is usually no good reason not to set the HttpOnly flag on all cookies.</p>]]></remediationBackground>
+    <issueDetail><![CDATA[<p>The following cookie was issued by the application and does not have the HttpOnly flag set: <b>PHPSESSID</b></p>]]></issueDetail>
+    <requestresponse>
+      <request method="GET" base64="true"><![CDATA[R0VUIC9EVldBL2xvZ2luLnBocCBIVFRQLzEuMQ0KSG9zdDogbG9jYWxob3N0DQoNCg==]]></request>
+      <response base64="true"><![CDATA[SFRUUC8xLjEgMjAwIE9LDQpTZXQtQ29va2llOiBQSFBTRVNTSUQ9N2YyYTljMWRlNGI4OyBwYXRoPS8NCg0K]]></response>
+      <responseRedirected>false</responseRedirected>
+    </requestresponse>
+  </issue>
+
+  <issue>
+    <serialNumber>4917283640021884420</serialNumber>
+    <type>5244416</type>
+    <name>Frameable response (potential clickjacking)</name>
+    <host ip="127.0.0.1">http://localhost</host>
+    <path><![CDATA[/DVWA/index.php]]></path>
+    <location><![CDATA[/DVWA/index.php]]></location>
+    <severity>Information</severity>
+    <confidence>Certain</confidence>
+    <issueBackground><![CDATA[<p>If a page fails to set an appropriate X-Frame-Options or Content-Security-Policy HTTP header, it might be possible for a page controlled by an attacker to load it within an iframe.</p>]]></issueBackground>
+    <remediationBackground><![CDATA[<p>To effectively prevent framing attacks, the application should return a response header with the name X-Frame-Options and the value DENY.</p>]]></remediationBackground>
+    <issueDetail><![CDATA[<p>The response does not include either an X-Frame-Options header or a Content-Security-Policy header with a frame-ancestors directive.</p>]]></issueDetail>
+    <requestresponse>
+      <request method="GET" base64="true"><![CDATA[R0VUIC9EVldBL2luZGV4LnBocCBIVFRQLzEuMQ0KSG9zdDogbG9jYWxob3N0DQoNCg==]]></request>
+      <response base64="true"><![CDATA[SFRUUC8xLjEgMjAwIE9LDQpDb250ZW50LVR5cGU6IHRleHQvaHRtbA0KDQo8aHRtbD48L2h0bWw+]]></response>
+      <responseRedirected>false</responseRedirected>
+    </requestresponse>
+  </issue>
+
+</issues>
